@@ -3,7 +3,7 @@
  * @Author: Floyd Li (floyd.li@outlook.com)
  * @Date: 2022-11-29 11:03:05
  * @LastEditors: Floyd Li (floyd.li@outlook.com)
- * @LastEditTime: 2022-12-01 10:32:16
+ * @LastEditTime: 2022-12-01 10:59:39
 -->
 # i-deploy
 
@@ -37,12 +37,12 @@
   "privateKeyPath": "~/.ssh/id_rsa", // private key path
   "distDir": "./dist", // local build directory
   // note: all of these build-related command will be executed locally
-  "preBuildCommand": ["rm -rf ./dist"], // pre build command
+  "preBuildCommand": ["rm -rf ./dist"], // pre build command (optional)
   "buildCommand": "yarn build", // build command
-  "postBuildCommand": ["echo 'build success'"],//post build command
+  "postBuildCommand": ["echo 'build success'"],//post build command (optional)
   // note: all of these deploy command will be executed on the server
-  "preDeployCommand": ["rm -rf /folder/to/deploy/*"], // pre deploy command
+  "preDeployCommand": ["rm -rf /folder/to/deploy/*"], // pre deploy command (optional)
   "deployDir": "/folder/to/deploy", // deploy directory on the server
-  "postDeployCommand": ["nginx -s reload"] // post deploy command
+  "postDeployCommand": ["nginx -s reload"] // post deploy command (optional)
 }
 ```
