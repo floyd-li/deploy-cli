@@ -1,0 +1,24 @@
+{
+  "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
+    "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
+    "outDir": "bin" /* Specify an output folder for all emitted files. */,
+    "module": "ESnext",
+    "paths": {
+      "@/*": ["src/*"]
+    } /* Specify a set of entries that re-map imports to additional lookup locations. */,
+    "sourceMap": true /* Create source map files for emitted JavaScript files. */,
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "*.config.js", "**/*/*.test.*"],
+  "ts-node": {
+    "files": true,
+    "transpileOnly": true,
+    "require": ["tsconfig-paths/register"],
+    "compilerOptions": {
+      "module": "ESnext"
+    }
+  }
+}

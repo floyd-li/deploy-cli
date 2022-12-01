@@ -1,0 +1,5 @@
+/node_modules
+/bin
+deploy.*.json
+*.log
+pnpm-lock.yaml
