@@ -3,59 +3,64 @@
  * @Author: Floyd Li (floyd.li@outlook.com)
  * @Date: 2022-11-30 11:16:10
  * @LastEditors: Floyd Li (floyd.li@outlook.com)
- * @LastEditTime: 2022-12-01 10:06:11
+ * @LastEditTime: 2022-12-01 15:30:42
  */
 import { readConfig } from "./utils/file.js";
-import logger from "./utils/logger.js";
 import { exec } from "./utils/system.js";
+import { funcWrapper } from "./utils/utils.js";
 import type IDeployConfig from "./types/deployConfig.js";
 import { NodeSSH } from "node-ssh";
-
+import chalk from "chalk";
 async function build(config: IDeployConfig) {
-  if (config.preBuildCommand) {
+  if (config.preBuildCommand && config.preBuildCommand.length > 0) {
     for (const cmd of config.preBuildCommand) {
-      await exec(cmd);
+      await funcWrapper(exec)(`Executed local command ${cmd}`, cmd);
     }
   }
-  await exec(config.buildCommand);
-  if (config.postBuildCommand) {
+  await funcWrapper(exec)("Building", config.buildCommand);
+  if (config.postBuildCommand && config.postBuildCommand.length > 0) {
     for (const cmd of config.postBuildCommand) {
-      await exec(cmd);
+      await funcWrapper(exec)(`Executed local command ${cmd}`, cmd);
     }
   }
-  // check if dist generated succeed
+  // TODO check if dist generated succeed
 }
 
 async function upload(config: IDeployConfig) {
   const ssh = new NodeSSH();
   await ssh.connect(config);
-  if (config.preDeployCommand) {
+  if (config.preDeployCommand && config.preDeployCommand.length > 0) {
     for (const cmd of config.preDeployCommand) {
-      await ssh.execCommand(cmd);
+      await funcWrapper(ssh.execCommand.bind(ssh))(
+        `Executed shell command ${cmd}`,
+        cmd
+      );
     }
   }
-  await ssh.putDirectory(config.distDir, config.deployDir, {
-    recursive: true,
-  });
-  if (config.postDeployCommand) {
+  await funcWrapper(ssh.putDirectory.bind(ssh))(
+    "Upload dist to remote",
+    config.distDir,
+    config.deployDir
+  );
+  if (config.postDeployCommand && config.postDeployCommand.length > 0) {
     for (const cmd of config.postDeployCommand) {
-      await ssh.execCommand(cmd);
+      await funcWrapper(ssh.execCommand.bind(ssh))(
+        `Executed shell command ${cmd}`,
+        cmd
+      );
     }
   }
   ssh.dispose();
 }
 
-async function doDeploy(file: string): Promise<void> {
-  const config: IDeployConfig = await readConfig(file);
-  console.table(config);
-
-  logger.log("start build...");
-  await build(config);
-  console.log("build command executed");
-  logger.log("start deploy...");
-  await upload(config);
-}
-
-export function deploy(configs: Array<string>): void {
-  configs.forEach(doDeploy);
+export async function deploy(configs: Array<string>): Promise<void> {
+  for (const file of configs) {
+    const config: IDeployConfig = await readConfig(file);
+    console.log("################## deploy configs ##################");
+    console.log(config);
+    console.log("####################################################");
+    await build(config);
+    await upload(config);
+    console.log(chalk.green("Deploy succeed!"));
+  }
 }
