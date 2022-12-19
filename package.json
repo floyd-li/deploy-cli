@@ -29,7 +29,7 @@
     "@types/node": "^18.11.13",
     "@types/ssh2": "^1.11.6",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
-    "@typescript-eslint/parser": "^5.46.0",
+    "@typescript-eslint/parser": "^5.46.1",
     "chalk": "^5.2.0",
     "commander": "^9.4.1",
     "cz-conventional-changelog": "3.3.0",
