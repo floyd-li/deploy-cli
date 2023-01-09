@@ -22,8 +22,8 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^17.4.0",
     "@commitlint/cli": "^17.4.0",
-    "@commitlint/config-conventional": "^17.1.0",
     "@tsconfig/node16-strictest-esm": "^1.0.3",
     "@types/jest": "^29.2.5",
     "@types/node": "^18.11.18",
