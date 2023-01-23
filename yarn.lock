@@ -3256,10 +3256,10 @@ node-releases@^2.0.6:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.6.tgz#8a7088c63a55e493845683ebf3c828d8c51c5503"
   integrity sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==
 
-node-ssh@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/node-ssh/-/node-ssh-13.0.0.tgz#5e24ea6ce9c73168544f26d680d8a867f07843ea"
-  integrity sha512-8yfPvuB8z1M5rXFR8Z1Tl0a0M43N64VjZfjXRwOGCcImFphuXhMPniPksf1FkVj9djKbpHvLUMIVS399H9yCSQ==
+node-ssh@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/node-ssh/-/node-ssh-13.0.1.tgz#e20759e4d6490c5c7babbc1b21b72479e90620be"
+  integrity sha512-prGXb9KXXtrienVBPiyOCm7F8KSsQciN8VCgrkZeJAlSEtF8HsXa/0uVE5a6MgwIBPa0etTgwiyj/lfiFdVK1Q==
   dependencies:
     is-stream "^2.0.0"
     make-dir "^3.1.0"
