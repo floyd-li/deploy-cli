@@ -26,7 +26,7 @@
     "@commitlint/cli": "^17.4.2",
     "@tsconfig/node16-strictest-esm": "^1.0.3",
     "@types/jest": "^29.4.0",
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.16.0",
     "@types/ssh2": "^1.11.7",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.0",
